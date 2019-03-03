@@ -1,0 +1,12 @@
+.LoginForm {
+    width: 400px;
+    height: 500px;
+    margin: 0 auto;
+}
+.LoginForm input{
+    margin-top: 30px;
+}
+.btn-info{
+    margin-top: 30px;
+    cursor: pointer;
+}
