@@ -10,11 +10,13 @@ const TextInputField = ({ type, name, value, changed, required, className, id, p
 TextInputField.propTypes = {
     type: PropTypes.string.isRequired,
     value: PropTypes.string,
-    changed: PropTypes.func.isRequired,
+    changed: PropTypes.func,
     required: PropTypes.bool.isRequired
 };
 TextInputField.defaultProps = {
-    value: ""
+    value: "",
+    required: true,
+    type: "",
 };
 
 export default TextInputField;

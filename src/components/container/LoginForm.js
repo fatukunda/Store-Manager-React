@@ -35,10 +35,10 @@ class LoginForm extends Component {
         return (
             <form className="LoginForm" onSubmit={this.submitHandler}>
                 <div className="form-group">
-                    <TextInputField name="username" value={username} changed={this.changedHandler} type="text" className="form-control" id="username" placeholder="Username" />
+                    <TextInputField name="username" value={username} changed={this.changedHandler} type="text" className="form-control" id="username" placeholder="Username" required />
                 </div>
                 <div className="form-group">
-                    <TextInputField name="password" value={password} changed={this.changedHandler} type="password" className="form-control" id="password" placeholder="Password" />
+                    <TextInputField name="password" value={password} changed={this.changedHandler} type="password" className="form-control" id="password" placeholder="Password" required />
                 </div>
                 <input type="submit" className="btn btn-info btn-block mb-4" value="Sign In" />
                 {isLoginPending && <div>Loading ........</div>}
