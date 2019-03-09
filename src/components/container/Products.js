@@ -56,6 +56,7 @@ class Products extends Component {
                                 quantity={product.quantity}
                                 clicked={() => this.clickHandler(product.product_id)}
                                 key={product.id}
+                                clicked={this.clickHandler}
                             />
                         })}
                     </tbody>
