@@ -17,15 +17,36 @@ class Products extends Component {
     componentDidMount() {
         this.props.fetchProducts()
     }
+    clickHandler = (event) => {
+        event.preventDefault();
+    }
     render() {
         const products = this.props.products;
         return (
-            <div className="col-md-8">
-                <div className="row">
-                    {products.map((product) => {
-                        return <Product name={product.name} price={product.unit_price} />
-                    })}
-                </div>
+            <div className="col-md-7">
+                <table className="table table-hover .table-responsive{-sm|-md|-lg|-xl} mt-4">
+                    <caption>List of Products</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Unit price</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {products.map((product) => {
+                            return <Product
+                                id={product.product_id}
+                                name={product.name}
+                                price={product.unit_price}
+                                quantity={product.quantity}
+                                clicked={this.clickHandler}
+                            />
+                        })}
+                    </tbody>
+                </table>
             </div>
         )
     }

@@ -32,7 +32,15 @@ export const login = (username, password) => (dispatch) => {
     return axios(loginUrl, requestData)
         .then((response) => {
             const { access_token, user_id, user_type } = response.data
-            localStorage.setItem("auth-token", access_token);
+            localStorage.setItem(
+                {
+                    "auth-token": access_token
+                },
+                { "user_id": user_id },
+                {
+                    "user_type": user_type
+                }
+            );
             dispatch(loginSuccess(response.data));
             // window.location.href = "/admin-panel";
 
