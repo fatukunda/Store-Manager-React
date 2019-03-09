@@ -1,5 +1,4 @@
 import * as actions from '../actions/loginActions';
-import axios from 'axios';
 import { loginUrl } from '../routes/index'
 
 export const loginPending = (isLoginPending) => ({
@@ -26,28 +25,29 @@ export const login = (username, password) => (dispatch) => {
         headers: {
             "Content-Type": "application/json",
         },
-        data: JSON.stringify(user),
+        body: JSON.stringify(user),
     }
     dispatch(loginPending(true));
-    return axios(loginUrl, requestData)
-        .then((response) => {
-            const { access_token, user_id, user_type } = response.data
-            localStorage.setItem(
-                {
-                    "auth-token": access_token
-                },
-                { "user_id": user_id },
-                {
-                    "user_type": user_type
-                }
-            );
-            dispatch(loginSuccess(response.data));
-            // window.location.href = "/admin-panel";
-
+    return fetch(loginUrl, requestData)
+        .then(res => res.json())
+        .then((data) => {
+            if (data.message) {
+                dispatch(loginfailure(data.message));
+            }
+            else {
+                const { access_token, user_id, user_type } = data
+                localStorage.setItem("auth_token", access_token)
+                dispatch(loginSuccess(data));
+                window.location.href = "/adminPanel/products";
+            }
         })
         .catch((error) => {
-            dispatch(loginfailure(error.response.data));
         });
+};
+
+export const logout = () => (dispatch) => {
+    localStorage.clear();
+    return dispatch(loginSuccess({}));
 };
 
 

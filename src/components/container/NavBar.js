@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const NavBar = ({ className, brand, logo }) => {
+const NavBar = ({ className, brand, logo, clicked }) => {
     return (
         <nav className={className}>
-            <a className="navbar-brand" href="#">
+            <Link to="/adminPanel" className="navbar-brand">
                 <img src={logo} width="50" height="50" alt="Logo" />{brand}
-            </a>
+            </Link>
             <button className="navbar-toggler navbar-dark" type="button" data-toggle="collapse"
                 data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -14,13 +15,17 @@ const NavBar = ({ className, brand, logo }) => {
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item active">
-                        <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+                        <Link to="/adminPanel" className="nav-link">
+                            <span className="sr-only">Home</span>
+                        </Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Admin</a>
+                        <Link to="/adminPanel" className="nav-link">
+                            <span className="sr-only"></span>
+                        </Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Logout</a>
+                        <button type="button" className="btn btn-outline-info" onClick={clicked}>Logout</button>
                     </li>
                 </ul>
             </div>

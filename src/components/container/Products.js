@@ -1,29 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import PropTypes from 'prop-types';
 import Product from './Product';
 import { fetchProducts } from '../../actionTypes/productActions';
+import { fetchSingleProduct } from "../../actionTypes/singleProductActionTypes";
 
 const mapDispatchToProps = dispatch => ({
-    fetchProducts: () => dispatch(fetchProducts())
+    fetchProducts: () => dispatch(fetchProducts()),
+    fetchSingleProduct: (id) => dispatch(fetchSingleProduct(id))
 });
 const mapStateToProps = state => ({
     products: state.productsReducer.products,
     isfetchProductsPending: state.productsReducer.isfetchProductsPending,
-    errors: state.productsReducer.errors
+    errors: state.productsReducer.errors,
+    product: state.singleProductReducer.product,
+
 });
 
 class Products extends Component {
     componentDidMount() {
         this.props.fetchProducts()
     }
-    clickHandler = (event) => {
-        event.preventDefault();
+    clickHandler = (productId) => {
+        this.props.fetchSingleProduct(productId)
     }
     render() {
         const products = this.props.products;
         return (
             <div className="col-md-7">
+                {
+                    this.props.isfetchProductsPending &&
+                    <div className="d-flex align-items-center">
+                        <strong className="text-info">Loading...</strong>
+                        <div className="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+                    </div>
+                }
                 <table className="table table-hover .table-responsive{-sm|-md|-lg|-xl} mt-4">
                     <caption>List of Products</caption>
                     <thead>
@@ -42,7 +52,8 @@ class Products extends Component {
                                 name={product.name}
                                 price={product.unit_price}
                                 quantity={product.quantity}
-                                clicked={this.clickHandler}
+                                clicked={this.clickHandler.bind(this, product.product_id)}
+                                key={product.product_id}
                             />
                         })}
                     </tbody>

@@ -4,6 +4,7 @@ import { login } from "../../actionTypes/loginActionTypes";
 import TextInputField from '../presentational/TextInput';
 import Alert from '../presentational/Alert';
 import "./styles/LoginForm.css";
+import Navigation from './Navigation';
 
 const mapStateToProps = state => ({
     isLoginPending: state.loginReducer.isLoginPending,
@@ -33,17 +34,40 @@ class LoginForm extends Component {
         const { username, password } = this.state;
         const { isLoginPending, error } = this.props;
         return (
-            <form className="LoginForm" onSubmit={this.submitHandler}>
-                <div className="form-group">
-                    <TextInputField name="username" value={username} changed={this.changedHandler} type="text" className="form-control" id="username" placeholder="Username" required />
-                </div>
-                <div className="form-group">
-                    <TextInputField name="password" value={password} changed={this.changedHandler} type="password" className="form-control" id="password" placeholder="Password" required />
-                </div>
-                <input type="submit" className="btn btn-info btn-block mb-4" value="Sign In" />
-                {isLoginPending && <div>Loading ........</div>}
-                {error && <Alert className="alert alert-danger alert-dismissible fade show mt-6" message={error.message} />}
-            </form>
+            <div>
+                <Navigation />
+                <form className="LoginForm" onSubmit={this.submitHandler}>
+                    <div className="form-group">
+                        <TextInputField
+                            name="username"
+                            value={username}
+                            changed={this.changedHandler}
+                            type="text"
+                            className="form-control"
+                            id="username"
+                            placeholder="Username"
+                            required />
+                    </div>
+                    <div className="form-group">
+                        <TextInputField
+                            name="password"
+                            value={password}
+                            changed={this.changedHandler}
+                            type="password"
+                            className="form-control"
+                            id="password"
+                            placeholder="Password"
+                            required />
+                    </div>
+                    <input
+                        type="submit"
+                        className="btn btn-info btn-block mb-4"
+                        value="Sign In" />
+                    {isLoginPending && <div>Loading ........</div>}
+                    {error && <Alert className="alert alert-danger alert-dismissible fade show mt-6" message={error} />}
+                </form>
+            </div>
+
         )
     }
 }
