@@ -3,7 +3,15 @@ import PropTypes from 'prop-types';
 
 const TextInputField = ({ type, name, value, changed, required, className, id, placeholder }) => {
     return (
-        <input type={type} name={name} id={id} value={value} onChange={changed} required={required} className={className} placeholder={placeholder} />
+        <input
+            type={type}
+            name={name}
+            id={id}
+            value={value}
+            onChange={changed}
+            required={required} c
+            className={className}
+            placeholder={placeholder} />
     );
 };
 

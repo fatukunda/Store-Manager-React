@@ -1,15 +1,18 @@
 import React from 'react';
 
-const Product = ({ name, category, price, quantity }) => {
+const Product = ({ name, category, price, quantity, id, clicked }) => {
     return (
-        <div className="card col-md-4 mt-2">
-            <img className="card-img-top" src="https://via.placeholder.com/150" alt="ProductImage" />
-            <div className="card-body">
-                <h5 className="card-title">{name}</h5>
-                <p className="card-text">{price}</p>
-                <a href="#" className="btn btn-info">Read More</a>
-            </div>
-        </div>
+        <tr>
+            <th scope="row">{id}</th>
+            <td>{name}</td>
+            <td>{quantity}</td>
+            <td>{price}</td>
+            <td><button
+                type="button"
+                className="btn btn-outline-info"
+                onClick={clicked}>View more</button>
+            </td>
+        </tr>
     )
 }
 export default Product;
