@@ -54,7 +54,7 @@ export class Products extends Component {
 								<div className="spinner-border ml-auto" role="status" aria-hidden="true" />
 							</div>
 						)}
-						<table className="table table-hover .table-responsive{-sm|-md|-lg|-xl} mt-4">
+						<table className="table table-hover table-responsive-sm mt-4">
 							<caption>List of Products</caption>
 							<thead>
 								<tr>
