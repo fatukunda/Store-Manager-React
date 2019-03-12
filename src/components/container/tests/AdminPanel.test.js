@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Product from '../Product';
-describe('Product', () => {
+import AdminPanel from '../AdminPanel';
+describe('AdminPanel', () => {
 	it('should render correctly in "debug" mode', () => {
-		const component = shallow(<Product debug />);
+		const component = shallow(<AdminPanel debug />);
 
 		expect(component).toMatchSnapshot();
 	});

@@ -1,9 +1,10 @@
-.NavBar{
-    background-color: #003d34;
+.NavBar {
+	background-color: #003d34;
+	width: 100%;
 }
-.NavBar a{
-    color: #fff;
+.NavBar a {
+	color: #fff;
 }
-.navbar-toggler-icon{
-    color: #fff;
+.navbar-toggler-icon {
+	color: #fff;
 }
